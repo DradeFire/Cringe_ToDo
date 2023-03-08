@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: 11
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Build
         run: ./gradlew build
 
@@ -32,6 +35,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
       - name: Lint
         run: ./gradlew detekt
@@ -52,6 +58,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
       - name: Testing
         run: ./gradlew test
