@@ -401,8 +401,6 @@ potential-bugs:
     active: true
     forbiddenTypePatterns:
       - 'kotlin.String'
-  CastNullableToNonNullableType:
-    active: false
   CastToNullableType:
     active: false
   Deprecation:
@@ -420,9 +418,6 @@ potential-bugs:
       - 'java.util.HashSet'
       - 'java.util.LinkedHashMap'
       - 'java.util.HashMap'
-  ElseCaseInsteadOfExhaustiveWhen:
-    active: false
-    ignoredSubjectTypes: []
   EqualsAlwaysReturnsTrueOrFalse:
     active: false
   EqualsWithHashCodeExist:
@@ -501,10 +496,6 @@ style:
   active: true
   AlsoCouldBeApply:
     active: false
-  BracesOnIfStatements:
-    active: false
-    singleLine: 'never'
-    multiLine: 'always'
   CanBeNonNullable:
     active: false
   CascadingCallWrapping:
@@ -514,11 +505,6 @@ style:
     active: false
   CollapsibleIfStatements:
     active: false
-  DataClassContainsFunctions:
-    active: false
-    conversionFunctionPrefix:
-      - 'to'
-    allowOperators: false
   DataClassShouldBeImmutable:
     active: false
   DestructuringDeclarationWithTooManyEntries:
@@ -535,23 +521,6 @@ style:
   ExpressionBodySyntax:
     active: false
     includeLineWrapping: false
-  ForbiddenAnnotation:
-    active: false
-    annotations:
-      - reason: 'it is a java annotation. Use `Suppress` instead.'
-        value: 'java.lang.SuppressWarnings'
-      - reason: 'it is a java annotation. Use `kotlin.Deprecated` instead.'
-        value: 'java.lang.Deprecated'
-      - reason: 'it is a java annotation. Use `kotlin.annotation.MustBeDocumented` instead.'
-        value: 'java.lang.annotation.Documented'
-      - reason: 'it is a java annotation. Use `kotlin.annotation.Target` instead.'
-        value: 'java.lang.annotation.Target'
-      - reason: 'it is a java annotation. Use `kotlin.annotation.Retention` instead.'
-        value: 'java.lang.annotation.Retention'
-      - reason: 'it is a java annotation. Use `kotlin.annotation.Repeatable` instead.'
-        value: 'java.lang.annotation.Repeatable'
-      - reason: 'Kotlin does not support @Inherited annotation, see https://youtrack.jetbrains.com/issue/KT-22265'
-        value: 'java.lang.annotation.Inherited'
   ForbiddenComment:
     active: false
     values:
@@ -665,10 +634,6 @@ style:
     active: true
   SpacingBetweenPackageAndImports:
     active: false
-  StringShouldBeRawString:
-    active: false
-    maxEscapedCharacterCount: 2
-    ignoredCharacters: []
   ThrowsCount:
     active: false
     max: 2
@@ -704,17 +669,11 @@ style:
     active: true
   UnusedImports:
     active: true
-  UnusedParameter:
-    active: true
-    allowedNames: 'ignored|expected'
   UnusedPrivateClass:
     active: true
   UnusedPrivateMember:
     active: true
     allowedNames: ''
-  UnusedPrivateProperty:
-    active: true
-    allowedNames: '_|ignored|expected|serialVersionUID'
   UseAnyOrNoneInsteadOfFind:
     active: true
   UseArrayLiteralsInAnnotations:
@@ -730,9 +689,6 @@ style:
     active: false
   UseIfEmptyOrIfBlank:
     active: false
-  UseIfInsteadOfWhen:
-    active: false
-    ignoreWhenContainingVariableDeclaration: false
   UseIsNullOrEmpty:
     active: true
   UseOrEmpty:
