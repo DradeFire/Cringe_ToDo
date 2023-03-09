@@ -73,7 +73,8 @@ def detektTask = tasks.register("detekt", JavaExec) {
     classpath = configurations.detekt
 
     def input = "$projectDir"
-    def params = [ '-i', input]
+    def config = "$projectDir/detekt.yml"
+    def params = [ '-i', input, '-c', config,]
 
     args(params)
 }
