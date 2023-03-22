@@ -20,7 +20,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         binding?.loginButton?.setOnClickListener {
             val login: String = binding.loginEditText.text.toString()
             val password: String = binding.passwordEditText.text.toString()
-            viewModel?.onLoginClick(login, password)
+
+            viewModel?.onLoginClick(login, password)?.subscribe()
         }
 
     }

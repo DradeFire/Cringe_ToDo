@@ -1,12 +1,12 @@
 package com.cringeteam.todoproject.presentation.model.formatters
 
-import com.cringeteam.todoproject.domain.model.LoginRequestVo
-import com.cringeteam.todoproject.presentation.model.LoginRequestModel
+import com.cringeteam.todoproject.domain.model.LoginRequest
+import com.cringeteam.todoproject.presentation.model.LoginRequestVo
 
 class LoginRequestFormatter {
 
-    fun format(request: LoginRequestModel): LoginRequestVo {
-        return LoginRequestVo(
+    fun format(request: LoginRequestVo): LoginRequest {
+        return LoginRequest(
             login = request.login,
             password = request.password,
         )
