@@ -14,16 +14,16 @@ abstract class BaseFragment<B: ViewBinding, VM: BaseViewModel> : Fragment() {
 
     protected abstract val inflater: (LayoutInflater, ViewGroup?, Boolean) -> B
     private var _binding: B? = null
-    protected val binding = _binding
+    protected val binding get() = _binding
 
     private var _viewModel: VM? = null
-    protected val viewModel = _viewModel
+    protected val viewModel get() = _viewModel
     protected abstract val viewModelClass: Class<VM>
 
     protected abstract val screenName: String
 
     private var _compositeDisposable: CompositeDisposable? = null
-    protected val compositeDisposable = _compositeDisposable
+    protected val compositeDisposable get() = _compositeDisposable
 
     override fun onCreateView(
         inflater: LayoutInflater,
