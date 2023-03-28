@@ -1,5 +1,7 @@
 package com.cringeteam.todoproject.domain.model
 
 data class LoginResponse(
-    val code: String,
+    val token: String,
+    val userId: Long,
+    val login: String,
 )

@@ -6,7 +6,9 @@ import com.cringeteam.todoproject.presentation.model.LoginResponseVo
 class LoginResponseFormatter {
     fun format(response: LoginResponse): LoginResponseVo {
         return LoginResponseVo(
-            code = response.code
+            token = response.token,
+            userId = response.userId,
+            login = response.login,
         )
     }
 }

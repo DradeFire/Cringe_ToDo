@@ -8,8 +8,19 @@
     <fragment
         android:id="@+id/loginScreen"
         android:name="com.cringeteam.todoproject.presentation.features.loginScreen.LoginFragment"
-        android:label="Login Screen"
+        android:label="Login screen"
         tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_navigate_loginScreen_to_NotesScreen"
+            app:destination="@id/notesScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notesScreen"
+        android:name="com.cringeteam.todoproject.presentation.features.notesScreen.NotesFragment"
+        android:label="Notes screen"
+        tools:layout="@layout/fragment_notes">
 
     </fragment>
 
