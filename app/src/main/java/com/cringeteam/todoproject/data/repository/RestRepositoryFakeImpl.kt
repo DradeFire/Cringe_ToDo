@@ -21,8 +21,6 @@ class RestRepositoryFakeImpl : RestRepository {
 
         val isAuthorizationCorrect = requestDto.login == "test" && requestDto.password == " "
 
-        val fakeRequestDelay = 5L
-
         return if (isAuthorizationCorrect) {
             val fakeResponse = LoginResponseDto(
                 token = "testToken",
@@ -31,11 +29,15 @@ class RestRepositoryFakeImpl : RestRepository {
             )
 
             Single.just(responseMapper.map(fakeResponse))
-                .delay(fakeRequestDelay, TimeUnit.SECONDS)
+                .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
 
         } else {
             Single.error<LoginResponse>(Exception("Wrong login or Password"))
-                .delay(fakeRequestDelay, TimeUnit.SECONDS)
+                .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
         }
+    }
+
+    companion object {
+        private const val FAKE_REQUEST_DELAY = 5L
     }
 }
