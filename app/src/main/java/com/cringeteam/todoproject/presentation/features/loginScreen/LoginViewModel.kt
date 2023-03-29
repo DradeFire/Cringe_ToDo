@@ -1,6 +1,7 @@
 package com.cringeteam.todoproject.presentation.features.loginScreen
 
 import com.cringeteam.todoproject.common.logger.Logger
+import com.cringeteam.todoproject.common.state.LoginScreenState
 import com.cringeteam.todoproject.domain.usecases.SendLoginRequestUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
 import com.cringeteam.todoproject.presentation.model.LoginRequestVo

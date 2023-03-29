@@ -1,4 +1,4 @@
-package com.cringeteam.todoproject.presentation.features.loginScreen
+package com.cringeteam.todoproject.common.state
 
 enum class LoginScreenState {
     Waiting,
