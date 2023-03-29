@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding
 import com.cringeteam.todoproject.common.logger.Logger
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
-abstract class BaseFragment<B: ViewBinding, VM: BaseViewModel> : Fragment() {
+abstract class BaseFragment<B : ViewBinding, VM : BaseViewModel> : Fragment() {
 
     protected abstract val inflater: (LayoutInflater, ViewGroup?, Boolean) -> B
     private var _binding: B? = null
@@ -40,6 +40,10 @@ abstract class BaseFragment<B: ViewBinding, VM: BaseViewModel> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (_viewModel == null) {
             _viewModel = ViewModelProvider(requireActivity())[viewModelClass]
+
+            if (compositeDisposable == null) {
+                _compositeDisposable = CompositeDisposable()
+            }
 
             initStartValues()
             initUI()
