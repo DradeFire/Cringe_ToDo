@@ -39,6 +39,9 @@ class LoginViewModel : BaseViewModel() {
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                _screenState.onNext(LoginScreenState.Loading)
+            }
             .subscribe(
                 {
                     _screenState.onNext(LoginScreenState.Success)
