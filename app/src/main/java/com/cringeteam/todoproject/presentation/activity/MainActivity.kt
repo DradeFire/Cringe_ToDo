@@ -1,7 +1,7 @@
 package com.cringeteam.todoproject.presentation.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.databinding.ActivityMainBinding

@@ -2,8 +2,14 @@ package com.cringeteam.todoproject.presentation.features.loginScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.cringeteam.todoproject.R
+import com.cringeteam.todoproject.common.logger.Logger
+import com.cringeteam.todoproject.common.state.LoginScreenState
 import com.cringeteam.todoproject.databinding.FragmentLoginBinding
 import com.cringeteam.todoproject.presentation.base.BaseFragment
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
@@ -17,13 +23,48 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun initButtons() {
         super.initButtons()
 
-        binding?.loginButton?.setOnClickListener {
-            val login: String = binding.loginEditText.text.toString()
-            val password: String = binding.passwordEditText.text.toString()
-
-            viewModel?.onLoginClick(login, password)?.subscribe()
+        binding?.let { bindingNotNull ->
+            with(bindingNotNull) {
+                loginButton.setOnClickListener {
+                    val login: String = loginEditText.text.toString()
+                    val password: String = passwordEditText.text.toString()
+                    viewModel?.onLoginClick(login, password)
+                }
+            }
         }
+    }
 
+    override fun initObservers() {
+        super.initObservers()
+
+        viewModel?.let { viewModel ->
+            compositeDisposable?.add(
+                viewModel.screenState
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { state ->
+                            when (state) {
+                                LoginScreenState.Waiting -> {
+                                    Logger.log("State is waiting")
+                                    binding?.loginButton?.isEnabled = true
+                                }
+                                LoginScreenState.Loading -> {
+                                    Logger.log("State is loading")
+                                    binding?.loginButton?.isEnabled = false
+                                }
+                                LoginScreenState.Success -> {
+                                    Logger.log("State is success")
+                                    findNavController().navigate(R.id.action_navigate_loginScreen_to_NotesScreen)
+                                }
+                            }
+                        },
+                        { error ->
+                            Logger.log("LoginFragment::initObservers(), screenState error: ${error.localizedMessage}")
+                        }
+                    )
+            )
+        }
     }
 
     companion object {
