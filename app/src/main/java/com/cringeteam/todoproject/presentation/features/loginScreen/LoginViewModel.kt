@@ -1,7 +1,7 @@
 package com.cringeteam.todoproject.presentation.features.loginScreen
 
 import com.cringeteam.todoproject.common.logger.Logger
-import com.cringeteam.todoproject.common.state.LoginScreenState
+import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.domain.usecases.SendLoginRequestUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
 import com.cringeteam.todoproject.presentation.model.LoginRequestVo
@@ -20,9 +20,9 @@ class LoginViewModel : BaseViewModel() {
     private val loginRequestFormatter = LoginRequestFormatter()
     private val loginResponseFormatter = LoginResponseFormatter()
 
-    private val _screenState: BehaviorSubject<LoginScreenState> =
-        BehaviorSubject.createDefault(LoginScreenState.Waiting)
-    val screenState: BehaviorSubject<LoginScreenState> get() = _screenState
+    private val _screenState: BehaviorSubject<ScreenState> =
+        BehaviorSubject.createDefault(ScreenState.Waiting)
+    val screenState: BehaviorSubject<ScreenState> get() = _screenState
 
     fun onLoginClick(login: String, password: String) {
 
@@ -41,11 +41,11 @@ class LoginViewModel : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    _screenState.onNext(LoginScreenState.Success)
+                    _screenState.onNext(ScreenState.Success)
                 },
                 { error ->
                     Logger.log("LoginViewModel::onLoginClick() error: $error")
-                    _screenState.onNext(LoginScreenState.Waiting)
+                    _screenState.onNext(ScreenState.Waiting)
                 }
             )
     }

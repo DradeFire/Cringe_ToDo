@@ -19,5 +19,5 @@ interface Api {
     ): Single<LoginResponseDto>
 
     @POST("${Consts.URL_PREFIX}/auth/registration")
-    fun signUp(@Body registrationUserDto: RegistrationUserDto): Single<StatusMessage>
+    fun registrationUser(@Body registrationUserDto: RegistrationUserDto): Single<StatusMessage>
 }

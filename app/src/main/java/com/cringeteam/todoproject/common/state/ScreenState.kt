@@ -1,6 +1,6 @@
 package com.cringeteam.todoproject.common.state
 
-enum class LoginScreenState {
+enum class ScreenState {
     Waiting,
     Loading,
     Success;
