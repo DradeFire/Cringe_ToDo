@@ -2,6 +2,7 @@ package com.cringeteam.todoproject.presentation.features.loginScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.common.logger.Logger
@@ -48,10 +49,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                                 LoginScreenState.Waiting -> {
                                     Logger.log("State is waiting")
                                     binding?.loginButton?.isEnabled = true
+                                    binding?.progressBar?.isVisible = false
                                 }
                                 LoginScreenState.Loading -> {
                                     Logger.log("State is loading")
                                     binding?.loginButton?.isEnabled = false
+                                    binding?.progressBar?.isVisible = true
                                 }
                                 LoginScreenState.Success -> {
                                     Logger.log("State is success")
