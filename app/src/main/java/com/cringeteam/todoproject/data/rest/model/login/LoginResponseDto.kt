@@ -1,4 +1,4 @@
-package com.cringeteam.todoproject.data.rest.model.loginResponse
+package com.cringeteam.todoproject.data.rest.model.login
 
 data class LoginResponseDto(
     val token: String,
