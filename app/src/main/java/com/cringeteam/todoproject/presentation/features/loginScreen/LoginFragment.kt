@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.common.logger.Logger
-import com.cringeteam.todoproject.common.state.LoginScreenState
+import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.databinding.FragmentLoginBinding
 import com.cringeteam.todoproject.presentation.base.BaseFragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -31,6 +31,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                     val password: String = passwordEditText.text.toString()
                     viewModel?.onLoginClick(login, password)
                 }
+
+                registrationButton.setOnClickListener {
+                    findNavController().navigate(R.id.action_navigate_loginScreen_to_registrationScreen)
+                }
             }
         }
     }
@@ -46,17 +50,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                     .subscribe(
                         { state ->
                             when (state) {
-                                LoginScreenState.Waiting -> {
+                                ScreenState.Waiting -> {
                                     Logger.log("State is waiting")
                                     binding?.loginButton?.isEnabled = true
                                     binding?.progressBar?.isVisible = false
                                 }
-                                LoginScreenState.Loading -> {
+                                ScreenState.Loading -> {
                                     Logger.log("State is loading")
                                     binding?.loginButton?.isEnabled = false
                                     binding?.progressBar?.isVisible = true
                                 }
-                                LoginScreenState.Success -> {
+                                ScreenState.Success -> {
                                     Logger.log("State is success")
                                     findNavController().navigate(R.id.action_navigate_loginScreen_to_NotesScreen)
                                 }

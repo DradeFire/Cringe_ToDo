@@ -10,5 +10,5 @@ interface RestRepository {
 
     fun getLoginAccess(request: LoginRequest): Single<LoginResponse>
 
-    fun signUp(request: RegistrationUser): Single<StatusMessage>
+    fun registrationUser(request: RegistrationUser): Single<StatusMessage>
 }

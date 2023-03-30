@@ -45,31 +45,30 @@ class RestRepositoryFakeImpl : RestRepository {
         }
     }
 
-    override fun signUp(request: RegistrationUser): Single<StatusMessage> {
+    override fun registrationUser(request: RegistrationUser): Single<StatusMessage> {
 
         val requestDto = registrationRequestMapper.map(request)
 
-        val isSignUpCorrect =
+        val isRegistrationUserCorrect =
             requestDto.login == "test"
                     && requestDto.password == " "
                     && requestDto.passwordConfirm == requestDto.password
 
-        if (isSignUpCorrect) {
-            val fakeResponseDto = StatusMessageDto(
-                codeStatus = RESPONSE_400,
-                message = RESPONSE_ERROR_400
-            )
-
-            val fakeResponse = statusMessageMapper.map(fakeResponseDto)
-
-            return Single.just(fakeResponse)
-                .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
-        } else {
+        if (isRegistrationUserCorrect) {
             val fakeResponseDto = StatusMessageDto(
                 codeStatus = RESPONSE_201,
                 message = RESPONSE_MESSAGE_201
             )
+            val fakeResponse = statusMessageMapper.map(fakeResponseDto)
 
+            return Single.just(fakeResponse)
+                .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
+
+        } else {
+            val fakeResponseDto = StatusMessageDto(
+                codeStatus = RESPONSE_400,
+                message = RESPONSE_ERROR_400
+            )
             val fakeResponse = statusMessageMapper.map(fakeResponseDto)
 
             return Single.just(fakeResponse)
@@ -79,9 +78,9 @@ class RestRepositoryFakeImpl : RestRepository {
 
     companion object {
         private const val FAKE_REQUEST_DELAY = 5L
-        private const val RESPONSE_201 = "201"
+        private const val RESPONSE_201 = 201
         private const val RESPONSE_MESSAGE_201 = "Создано"
-        private const val RESPONSE_400 = "400"
+        private const val RESPONSE_400 = 400
         private const val RESPONSE_ERROR_400 = "Некорректные данные, не хватает данных"
     }
 }

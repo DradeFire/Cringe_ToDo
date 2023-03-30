@@ -30,9 +30,9 @@ class RestRepositoryImpl : RestRepository {
         }
     }
 
-    override fun signUp(request: RegistrationUser): Single<StatusMessage> {
+    override fun registrationUser(request: RegistrationUser): Single<StatusMessage> {
         val requestDto = registrationRequestMapper.map(request)
 
-        return RetrofitApi.retrofit.signUp(requestDto)
+        return RetrofitApi.retrofit.registrationUser(requestDto)
     }
 }

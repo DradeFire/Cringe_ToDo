@@ -13,9 +13,9 @@ class RegistrationUseCase {
 
     fun execute(request: RegistrationUser): Single<StatusMessage> {
         return try {
-            repository.signUp(request)
+            repository.registrationUser(request)
         } catch (throwable: Throwable) {
-            Single.error<StatusMessage>(throwable)
+            Single.error(throwable)
         }
     }
 }
