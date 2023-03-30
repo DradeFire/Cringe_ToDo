@@ -50,7 +50,7 @@ class RegistrationViewModel : BaseViewModel() {
             }
             .subscribe(
                 { statusMessageVo ->
-                    if (statusMessageVo.codeStatus == 201) {
+                    if (statusMessageVo.codeStatus == CODE_STATUS_CREATED) {
                         _screenState.onNext(ScreenState.Success)
                     }
                     _screenState.onNext(ScreenState.Waiting)
@@ -67,5 +67,9 @@ class RegistrationViewModel : BaseViewModel() {
         registrationDisposable?.dispose()
         registrationDisposable = null
         super.onCleared()
+    }
+
+    companion object {
+        private const val CODE_STATUS_CREATED = 201
     }
 }
