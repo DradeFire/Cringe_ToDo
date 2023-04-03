@@ -55,10 +55,12 @@ class RegistrationViewModel : BaseViewModel() {
                     }
                     _screenState.onNext(ScreenState.Waiting)
                     Logger.log("Registration screen::onRegistrationClick() - ${statusMessageVo.message}")
+                    registrationDisposable?.dispose()
                 },
                 { throwable ->
                     _screenState.onNext(ScreenState.Waiting)
                     Logger.log("Registration screen::onRegistrationClick() - Error: ${throwable.localizedMessage}")
+                    registrationDisposable?.dispose()
                 }
             )
     }
