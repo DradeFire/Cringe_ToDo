@@ -46,6 +46,7 @@ class LoginViewModel : BaseViewModel() {
                 { error ->
                     Logger.log("LoginViewModel::onLoginClick() error: $error")
                     _screenState.onNext(ScreenState.Waiting)
+
                 }
             )
     }
