@@ -14,6 +14,21 @@
         <action
             android:id="@+id/action_navigate_loginScreen_to_NotesScreen"
             app:destination="@id/notesScreen" />
+
+        <action
+            android:id="@+id/action_navigate_loginScreen_to_registrationScreen"
+            app:destination="@id/registrationScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationScreen"
+        android:name="com.cringeteam.todoproject.presentation.features.registrationScreen.RegistrationFragment"
+        android:label="Registration screen"
+        tools:layout="@layout/fragment_registration">
+
+        <action
+            android:id="@+id/action_navigate_registrationScreen_to_loginScreen"
+            app:destination="@id/loginScreen" />
     </fragment>
 
     <fragment
@@ -21,7 +36,6 @@
         android:name="com.cringeteam.todoproject.presentation.features.notesScreen.NotesFragment"
         android:label="Notes screen"
         tools:layout="@layout/fragment_notes">
-
     </fragment>
 
 </navigation>

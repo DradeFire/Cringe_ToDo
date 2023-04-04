@@ -2,7 +2,9 @@
     <string name="app_name">ToDo Project</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
+    <string name="password_confirm">Подтвердить пароль</string>
     <string name="enter">Вход</string>
     <string name="enter_with_gmail">Вход через gmail</string>
     <string name="registration">Регистрация</string>
+    <string name="registration_user">Зарегистрироваться</string>
 </resources>
