@@ -40,7 +40,7 @@ class LoginViewModel : BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                _screenState.onNext(LoginScreenState.Loading)
+                _screenState.onNext(ScreenState.Loading)
             }
             .subscribe(
                 {
