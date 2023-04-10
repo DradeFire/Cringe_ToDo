@@ -48,21 +48,15 @@ class RegistrationViewModel : BaseViewModel() {
             .doOnSubscribe {
                 _screenState.onNext(ScreenState.Loading)
             }
-            .subscribe(
-                { statusMessageVo ->
-                    if (statusMessageVo.codeStatus == CODE_STATUS_CREATED) {
-                        _screenState.onNext(ScreenState.Success)
-                    }
-                    _screenState.onNext(ScreenState.Waiting)
-                    Logger.log("Registration screen::onRegistrationClick() - ${statusMessageVo.message}")
-                    registrationDisposable?.dispose()
-                },
-                { throwable ->
-                    _screenState.onNext(ScreenState.Waiting)
-                    Logger.log("Registration screen::onRegistrationClick() - Error: ${throwable.localizedMessage}")
-                    registrationDisposable?.dispose()
+            .subscribe { statusMessageVo ->
+                if (statusMessageVo.codeStatus == CODE_STATUS_CREATED) {
+                    _screenState.onNext(ScreenState.Success)
                 }
-            )
+                _screenState.onNext(ScreenState.Error)
+                _screenState.onNext(ScreenState.Waiting)
+                Logger.log("Registration screen::onRegistrationClick() - ${statusMessageVo.message}")
+                registrationDisposable?.dispose()
+            }
     }
 
     override fun onCleared() {
