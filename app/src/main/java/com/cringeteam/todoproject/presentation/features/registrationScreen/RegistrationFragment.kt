@@ -2,6 +2,8 @@ package com.cringeteam.todoproject.presentation.features.registrationScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.common.logger.Logger
@@ -46,16 +48,25 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, Registrat
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { screenState ->
                         when (screenState) {
-                            // TODO: add progressBar animation in registration-ui branch
                             ScreenState.Waiting -> {
+                                binding?.progressBar?.isVisible = false
+                                binding?.registrationButton?.isEnabled = true
                                 Logger.log("State is waiting")
                             }
                             ScreenState.Loading -> {
+                                binding?.progressBar?.isVisible = true
+                                binding?.registrationButton?.isEnabled = false
+                                Toast.makeText(context, "Идет загрузка...", Toast.LENGTH_SHORT).show()
                                 Logger.log("State is loading")
                             }
                             ScreenState.Success -> {
+                                Toast.makeText(context, "Аккаунт зарегистрирован", Toast.LENGTH_SHORT).show()
                                 Logger.log("State is success")
                                 findNavController().navigate(R.id.action_navigate_registrationScreen_to_loginScreen)
+                            }
+                            ScreenState.Error -> {
+                                Toast.makeText(context, "Ошибка...", Toast.LENGTH_SHORT).show()
+                                Logger.log("State is error")
                             }
                         }
                     }

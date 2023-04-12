@@ -1,6 +1,5 @@
 package com.cringeteam.todoproject.presentation.features.registrationScreen
 
-import com.cringeteam.todoproject.common.logger.Logger
 import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.domain.usecases.RegistrationUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
@@ -48,21 +47,16 @@ class RegistrationViewModel : BaseViewModel() {
             .doOnSubscribe {
                 _screenState.onNext(ScreenState.Loading)
             }
-            .subscribe(
-                { statusMessageVo ->
-                    if (statusMessageVo.codeStatus == CODE_STATUS_CREATED) {
-                        _screenState.onNext(ScreenState.Success)
-                    }
-                    _screenState.onNext(ScreenState.Waiting)
-                    Logger.log("Registration screen::onRegistrationClick() - ${statusMessageVo.message}")
-                    registrationDisposable?.dispose()
-                },
-                { throwable ->
-                    _screenState.onNext(ScreenState.Waiting)
-                    Logger.log("Registration screen::onRegistrationClick() - Error: ${throwable.localizedMessage}")
-                    registrationDisposable?.dispose()
+            .subscribe { statusMessageVo ->
+                if (statusMessageVo.codeStatus == CODE_STATUS_CREATED) {
+                    _screenState.onNext(ScreenState.Success)
                 }
-            )
+                if (statusMessageVo.codeStatus == CODE_STATUS_INCORRECT_INPUT) {
+                    _screenState.onNext(ScreenState.Error)
+                }
+                _screenState.onNext(ScreenState.Waiting)
+                registrationDisposable?.dispose()
+            }
     }
 
     override fun onCleared() {
@@ -73,5 +67,6 @@ class RegistrationViewModel : BaseViewModel() {
 
     companion object {
         private const val CODE_STATUS_CREATED = 201
+        private const val CODE_STATUS_INCORRECT_INPUT = 400
     }
 }

@@ -28,6 +28,7 @@
 
         <action
             android:id="@+id/action_navigate_registrationScreen_to_loginScreen"
+            app:popUpTo="@id/nav_graph"
             app:destination="@id/loginScreen" />
     </fragment>
 

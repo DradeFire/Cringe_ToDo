@@ -64,6 +64,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                                     Logger.log("State is success")
                                     findNavController().navigate(R.id.action_navigate_loginScreen_to_NotesScreen)
                                 }
+                                ScreenState.Error -> TODO("Add Error state and show error toast")
                             }
                         },
                         { error ->
