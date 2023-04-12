@@ -1,6 +1,5 @@
 package com.cringeteam.todoproject.presentation.features.registrationScreen
 
-import com.cringeteam.todoproject.common.logger.Logger
 import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.domain.usecases.RegistrationUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
