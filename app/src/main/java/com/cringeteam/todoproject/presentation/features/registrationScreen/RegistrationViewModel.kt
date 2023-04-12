@@ -52,9 +52,10 @@ class RegistrationViewModel : BaseViewModel() {
                 if (statusMessageVo.codeStatus == CODE_STATUS_CREATED) {
                     _screenState.onNext(ScreenState.Success)
                 }
-                _screenState.onNext(ScreenState.Error)
+                if (statusMessageVo.codeStatus == CODE_STATUS_INCORRECT_INPUT) {
+                    _screenState.onNext(ScreenState.Error)
+                }
                 _screenState.onNext(ScreenState.Waiting)
-                Logger.log("Registration screen::onRegistrationClick() - ${statusMessageVo.message}")
                 registrationDisposable?.dispose()
             }
     }
@@ -67,5 +68,6 @@ class RegistrationViewModel : BaseViewModel() {
 
     companion object {
         private const val CODE_STATUS_CREATED = 201
+        private const val CODE_STATUS_INCORRECT_INPUT = 400
     }
 }
