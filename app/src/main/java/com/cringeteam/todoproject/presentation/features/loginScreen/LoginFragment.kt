@@ -3,6 +3,7 @@ package com.cringeteam.todoproject.presentation.features.loginScreen
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.common.logger.Logger
@@ -20,6 +21,51 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override val viewModelClass: Class<LoginViewModel> = LoginViewModel::class.java
 
     override val screenName: String = SCREEN_NAME
+
+    override fun initUI() {
+        super.initUI()
+        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    }
+
+    override fun initObservers() {
+        super.initObservers()
+
+        viewModel?.let { viewModel ->
+            compositeDisposable?.add(
+                viewModel.screenState
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { state ->
+                            when (state) {
+                                ScreenState.Waiting -> {
+                                    Logger.log("State is waiting")
+                                    binding?.loginButton?.isEnabled = true
+                                    binding?.progressBar?.isVisible = false
+                                }
+
+                                ScreenState.Loading -> {
+                                    Logger.log("State is loading")
+                                    binding?.loginButton?.isEnabled = false
+                                    binding?.progressBar?.isVisible = true
+                                }
+
+                                ScreenState.Success -> {
+                                    Logger.log("State is success")
+                                    findNavController().navigate(R.id.action_navigate_loginScreen_to_NotesScreen)
+                                }
+
+                                ScreenState.Error -> TODO("Add Error state and show error toast")
+                            }
+                        },
+                        { error ->
+                            Logger.log("LoginFragment::initObservers(), screenState error: ${error.localizedMessage}")
+                        }
+                    )
+            )
+        }
+    }
 
     override fun initButtons() {
         super.initButtons()
@@ -39,44 +85,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         }
     }
 
-    override fun initObservers() {
-        super.initObservers()
-
-        viewModel?.let { viewModel ->
-            compositeDisposable?.add(
-                viewModel.screenState
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { state ->
-                            when (state) {
-                                ScreenState.Waiting -> {
-                                    Logger.log("State is waiting")
-                                    binding?.loginButton?.isEnabled = true
-                                    binding?.progressBar?.isVisible = false
-                                }
-                                ScreenState.Loading -> {
-                                    Logger.log("State is loading")
-                                    binding?.loginButton?.isEnabled = false
-                                    binding?.progressBar?.isVisible = true
-                                }
-                                ScreenState.Success -> {
-                                    Logger.log("State is success")
-                                    findNavController().navigate(R.id.action_navigate_loginScreen_to_NotesScreen)
-                                }
-                                ScreenState.Error -> TODO("Add Error state and show error toast")
-                            }
-                        },
-                        { error ->
-                            Logger.log("LoginFragment::initObservers(), screenState error: ${error.localizedMessage}")
-                        }
-                    )
-            )
-        }
-    }
-
     companion object {
-        fun newInstance() = LoginFragment()
         private const val SCREEN_NAME = "login screen"
     }
 }

@@ -8,4 +8,8 @@
     <string name="registration">Регистрация</string>
     <string name="registration_user">Зарегистрироваться</string>
     <string name="logo">Логотип</string>
+    <string name="profile">Профиль</string>
+    <string name="add_group">Создать группу</string>
+    <string name="logout">Выход</string>
+    <string name="delete_account">Удалить аккаунт</string>
 </resources>
