@@ -1,11 +1,14 @@
 package com.cringeteam.todoproject.data.repository
 
+import com.cringeteam.todoproject.data.rest.model.GroupDto
+import com.cringeteam.todoproject.data.rest.model.GroupMapper
 import com.cringeteam.todoproject.data.rest.model.StatusMessageDto
 import com.cringeteam.todoproject.data.rest.model.StatusMessageMapper
 import com.cringeteam.todoproject.data.rest.model.login.LoginRequestMapper
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseDto
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseMapper
 import com.cringeteam.todoproject.data.rest.model.registration.RegistrationUserMapper
+import com.cringeteam.todoproject.domain.model.Group
 import com.cringeteam.todoproject.domain.model.LoginRequest
 import com.cringeteam.todoproject.domain.model.LoginResponse
 import com.cringeteam.todoproject.domain.model.RegistrationUser
@@ -22,6 +25,8 @@ class RestRepositoryFakeImpl : RestRepository {
 
     private val registrationRequestMapper = RegistrationUserMapper()
     private val statusMessageMapper = StatusMessageMapper()
+
+    private val groupMapper = GroupMapper()
 
     override fun getLoginAccess(request: LoginRequest): Single<LoginResponse> {
 
@@ -76,8 +81,23 @@ class RestRepositoryFakeImpl : RestRepository {
         }
     }
 
+    override fun getGroups(): Single<List<Group>> {
+
+        val fakeGroupsDtoList = List<GroupDto>(TEST_LIST_SIZE) { index ->
+            GroupDto(0, "Project $index", "test")
+        }
+
+        val fakeGroupsList = fakeGroupsDtoList.map { dto ->
+            groupMapper.map(dto)
+        }
+
+        return Single.just(fakeGroupsList)
+            .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
+    }
+
     companion object {
         private const val FAKE_REQUEST_DELAY = 5L
+        private const val TEST_LIST_SIZE = 10
         private const val RESPONSE_201 = 201
         private const val RESPONSE_MESSAGE_201 = "Создано"
         private const val RESPONSE_400 = 400

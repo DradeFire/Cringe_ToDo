@@ -6,6 +6,7 @@ import com.cringeteam.todoproject.domain.model.LoginResponse
 import com.cringeteam.todoproject.data.rest.model.login.LoginRequestMapper
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseMapper
 import com.cringeteam.todoproject.data.rest.model.registration.RegistrationUserMapper
+import com.cringeteam.todoproject.domain.model.Group
 import com.cringeteam.todoproject.domain.model.RegistrationUser
 import com.cringeteam.todoproject.domain.model.StatusMessage
 import com.cringeteam.todoproject.domain.repository.RestRepository
@@ -34,5 +35,9 @@ class RestRepositoryImpl : RestRepository {
         val requestDto = registrationRequestMapper.map(request)
 
         return RetrofitApi.retrofit.registrationUser(requestDto)
+    }
+
+    override fun getGroups(): Single<List<Group>> {
+        TODO("Not yet implemented")
     }
 }

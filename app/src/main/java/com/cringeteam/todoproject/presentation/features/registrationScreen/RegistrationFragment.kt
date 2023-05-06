@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.common.logger.Logger
@@ -21,6 +22,12 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, Registrat
     override val viewModelClass: Class<RegistrationViewModel> = RegistrationViewModel::class.java
 
     override val screenName: String = SCREEN_NAME
+
+    override fun initUI() {
+        super.initUI()
+        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    }
 
     override fun initButtons() {
         super.initButtons()
@@ -75,7 +82,6 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, Registrat
     }
 
     companion object {
-        fun newInstance() = RegistrationFragment()
         private const val SCREEN_NAME = "Registration screen"
     }
 }

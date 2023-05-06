@@ -7,15 +7,20 @@
     </style>
 
     <style name="auth_edit_text">
-        <item name="android:background">@drawable/rounded_edittext_bg</item>
+        <item name="android:background">@drawable/ic_rounded_white_background</item>
         <item name="android:elevation">10dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="auth_button">
-        <item name="android:background">@drawable/rounded_ripple_button_bg</item>
+        <item name="android:background">@drawable/ic_rounded_ripple_button_bg</item>
         <item name="android:elevation">10dp</item>
         <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="item_list">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>
