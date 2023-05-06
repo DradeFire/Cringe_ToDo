@@ -83,7 +83,7 @@ class RestRepositoryFakeImpl : RestRepository {
 
     override fun getGroups(): Single<List<Group>> {
 
-        val fakeGroupsDtoList = List<GroupDto>(10) { index ->
+        val fakeGroupsDtoList = List<GroupDto>(TEST_LIST_SIZE) { index ->
             GroupDto(0, "Project $index", "test")
         }
 
@@ -97,6 +97,7 @@ class RestRepositoryFakeImpl : RestRepository {
 
     companion object {
         private const val FAKE_REQUEST_DELAY = 5L
+        private const val TEST_LIST_SIZE = 10
         private const val RESPONSE_201 = 201
         private const val RESPONSE_MESSAGE_201 = "Создано"
         private const val RESPONSE_400 = 400
