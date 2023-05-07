@@ -2,6 +2,9 @@ package com.cringeteam.todoproject.presentation.features.notesScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.databinding.FragmentNotesBinding
@@ -18,8 +21,15 @@ class NotesFragment : BaseFragment<FragmentNotesBinding, NotesViewModel>() {
 
     override fun initUI() {
         super.initUI()
+
         val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+        toolbar.isVisible = true
+
+        val settingsButton = toolbar.findViewById<ImageButton>(R.id.open_settings)
+        settingsButton.isVisible = false
     }
 
     companion object {

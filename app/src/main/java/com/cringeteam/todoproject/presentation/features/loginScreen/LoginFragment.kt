@@ -2,6 +2,7 @@ package com.cringeteam.todoproject.presentation.features.loginScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
@@ -24,8 +25,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     override fun initUI() {
         super.initUI()
+
         val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+        toolbar.isVisible = false
     }
 
     override fun initObservers() {
