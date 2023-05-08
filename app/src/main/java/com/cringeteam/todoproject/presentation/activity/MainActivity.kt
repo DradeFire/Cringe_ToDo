@@ -3,6 +3,7 @@ package com.cringeteam.todoproject.presentation.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import com.cringeteam.todoproject.R
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -50,21 +52,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initButtons() {
-        with(binding.drawer) {
-            logo.setOnClickListener {
-                // TODO: do navigate to profile
+        with(binding) {
+            with(drawer) {
+                logo.setOnClickListener {
+                    // TODO: do navigate to profile
+                }
+                closeDrawer.setOnClickListener {
+                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+                }
+                addGroup.setOnClickListener {
+                    // TODO: create dialog to create a group
+                }
+                logout.setOnClickListener {
+                    // TODO: logout + navigate to loginScreen
+                }
+                deleteAccount.setOnClickListener {
+                    // TODO: create dialog "Are you sure"
+                }
             }
-            closeDrawer.setOnClickListener {
-                binding.drawerLayout.closeDrawer(GravityCompat.START)
-            }
-            addGroup.setOnClickListener {
-                // TODO: create dialog to create a group
-            }
-            logout.setOnClickListener {
-                // TODO: logout + navigate to loginScreen
-            }
-            deleteAccount.setOnClickListener {
-                // TODO: create dialog "Are you sure"
+
+            openDrawer.setOnClickListener {
+                drawerLayout.openDrawer(GravityCompat.START)
             }
         }
     }

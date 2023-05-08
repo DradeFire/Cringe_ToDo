@@ -12,4 +12,5 @@
     <string name="add_group">Создать группу</string>
     <string name="logout">Выход</string>
     <string name="delete_account">Удалить аккаунт</string>
+    <string name="open_navigation_menu">Открыть меню навигации</string>
 </resources>
