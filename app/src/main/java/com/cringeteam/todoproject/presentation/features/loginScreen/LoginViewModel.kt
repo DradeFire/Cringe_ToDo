@@ -2,9 +2,9 @@ package com.cringeteam.todoproject.presentation.features.loginScreen
 
 import com.cringeteam.todoproject.common.logger.Logger
 import com.cringeteam.todoproject.common.state.ScreenState
-import com.cringeteam.todoproject.domain.usecases.SendLoginRequestUseCase
+import com.cringeteam.todoproject.domain.usecases.SendLoginUserUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
-import com.cringeteam.todoproject.presentation.model.LoginRequestVo
+import com.cringeteam.todoproject.presentation.model.LoginUserVo
 import com.cringeteam.todoproject.presentation.model.formatters.LoginRequestFormatter
 import com.cringeteam.todoproject.presentation.model.formatters.LoginResponseFormatter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -16,7 +16,7 @@ class LoginViewModel : BaseViewModel() {
 
     private var loginRequestDisposable: Disposable? = null
 
-    private val sendLoginRequestUseCase = SendLoginRequestUseCase()
+    private val sendLoginUserUseCase = SendLoginUserUseCase()
     private val loginRequestFormatter = LoginRequestFormatter()
     private val loginResponseFormatter = LoginResponseFormatter()
 
@@ -27,13 +27,13 @@ class LoginViewModel : BaseViewModel() {
     fun onLoginClick(login: String, password: String) {
 
         val loginRequest = loginRequestFormatter.format(
-            LoginRequestVo(
+            LoginUserVo(
                 login = login,
                 password = password,
             )
         )
 
-        loginRequestDisposable = sendLoginRequestUseCase.execute(loginRequest)
+        loginRequestDisposable = sendLoginUserUseCase.execute(loginRequest)
             .map { loginResponse ->
                 loginResponseFormatter.format(loginResponse)
             }

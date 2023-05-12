@@ -1,7 +1,7 @@
 package com.cringeteam.todoproject.data.rest.api
 
 import com.cringeteam.todoproject.common.consts.Consts
-import com.cringeteam.todoproject.data.rest.model.login.LoginResponseDto
+import com.cringeteam.todoproject.data.rest.model.login.Token
 import com.cringeteam.todoproject.data.rest.model.registration.RegistrationUserDto
 import com.cringeteam.todoproject.domain.model.StatusMessage
 import io.reactivex.rxjava3.core.Single
@@ -16,7 +16,7 @@ interface Api {
     fun getLoginAccess(
         @Query("login") login: String,
         @Query("password") password: String,
-    ): Single<LoginResponseDto>
+    ): Single<Token>
 
     @POST("${Consts.URL_PREFIX}/auth/registration")
     fun registrationUser(@Body registrationUserDto: RegistrationUserDto): Single<StatusMessage>

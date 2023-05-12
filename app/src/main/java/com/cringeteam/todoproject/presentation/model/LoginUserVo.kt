@@ -1,6 +1,6 @@
 package com.cringeteam.todoproject.presentation.model
 
-data class LoginRequestVo(
+data class LoginUserVo(
     val login: String,
     val password: String,
 )

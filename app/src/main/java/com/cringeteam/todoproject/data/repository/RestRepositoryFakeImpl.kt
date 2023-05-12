@@ -6,13 +6,13 @@ import com.cringeteam.todoproject.data.rest.model.StatusMessageDto
 import com.cringeteam.todoproject.data.rest.model.StatusMessageMapper
 import com.cringeteam.todoproject.data.rest.model.UserDto
 import com.cringeteam.todoproject.data.rest.model.UserMapper
+import com.cringeteam.todoproject.data.rest.model.login.Token
 import com.cringeteam.todoproject.data.rest.model.login.LoginRequestMapper
-import com.cringeteam.todoproject.data.rest.model.login.LoginResponseDto
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseMapper
 import com.cringeteam.todoproject.data.rest.model.registration.RegistrationUserMapper
 import com.cringeteam.todoproject.domain.model.Group
-import com.cringeteam.todoproject.domain.model.LoginRequest
 import com.cringeteam.todoproject.domain.model.LoginResponse
+import com.cringeteam.todoproject.domain.model.LoginUser
 import com.cringeteam.todoproject.domain.model.RegistrationUser
 import com.cringeteam.todoproject.domain.model.StatusMessage
 import com.cringeteam.todoproject.domain.model.User
@@ -33,14 +33,14 @@ class RestRepositoryFakeImpl : RestRepository {
 
     private val userMapper = UserMapper()
 
-    override fun getLoginAccess(request: LoginRequest): Single<LoginResponse> {
+    override fun getLoginAccess(request: LoginUser): Single<LoginResponse> {
 
         val requestDto = loginRequestMapper.map(request)
 
         val isAuthorizationCorrect = requestDto.login == "test" && requestDto.password == " "
 
         return if (isAuthorizationCorrect) {
-            val fakeResponse = LoginResponseDto(
+            val fakeResponse = Token(
                 token = "testToken",
                 userId = -1L,
                 login = "testLogin",
