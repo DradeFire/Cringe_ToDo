@@ -1,7 +1,7 @@
 package com.cringeteam.todoproject.data.repository
 
 import com.cringeteam.todoproject.data.rest.retrofit.RetrofitApi
-import com.cringeteam.todoproject.domain.model.LoginRequest
+import com.cringeteam.todoproject.domain.model.LoginUser
 import com.cringeteam.todoproject.domain.model.LoginResponse
 import com.cringeteam.todoproject.data.rest.model.login.LoginRequestMapper
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseMapper
@@ -19,7 +19,7 @@ class RestRepositoryImpl : RestRepository {
 
     private val registrationRequestMapper = RegistrationUserMapper()
 
-    override fun getLoginAccess(request: LoginRequest): Single<LoginResponse> {
+    override fun getLoginAccess(request: LoginUser): Single<LoginResponse> {
 
         val requestDto = loginRequestMapper.map(request)
 
