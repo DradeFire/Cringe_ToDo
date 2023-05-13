@@ -13,6 +13,7 @@
 
         <action
             android:id="@+id/action_navigate_loginScreen_to_NotesScreen"
+            app:popUpTo="@id/nav_graph"
             app:destination="@id/notesScreen" />
 
         <action

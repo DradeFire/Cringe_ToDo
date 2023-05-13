@@ -4,7 +4,7 @@ import com.cringeteam.todoproject.domain.model.LoginResponse
 
 class LoginResponseMapper {
 
-    fun map(dto: LoginResponseDto): LoginResponse {
+    fun map(dto: Token): LoginResponse {
         return LoginResponse(
             token = dto.token,
             userId = dto.userId,
