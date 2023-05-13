@@ -2,12 +2,8 @@ package com.cringeteam.todoproject.presentation.features.changePasswordScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.cringeteam.todoproject.databinding.FragmentChangePasswordBinding
-import com.cringeteam.todoproject.databinding.FragmentLoginBinding
 import com.cringeteam.todoproject.presentation.base.BaseFragment
-import com.cringeteam.todoproject.presentation.features.loginScreen.LoginFragment
-import com.cringeteam.todoproject.presentation.features.loginScreen.LoginViewModel
 
 class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding, ChangePasswordViewModel>() {
 
