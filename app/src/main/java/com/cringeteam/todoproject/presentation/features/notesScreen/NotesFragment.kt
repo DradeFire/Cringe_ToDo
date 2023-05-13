@@ -19,17 +19,23 @@ class NotesFragment : BaseFragment<FragmentNotesBinding, NotesViewModel>() {
 
     override val screenName: String = SCREEN_NAME
 
-    override fun initUI() {
-        super.initUI()
+    override fun onStart() {
+        super.onStart()
 
-        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-
-        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
-        toolbar.isVisible = true
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
 
         val settingsButton = toolbar.findViewById<ImageButton>(R.id.open_settings)
         settingsButton.isVisible = false
+    }
+
+    override fun initUI() {
+        super.initUI()
+
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+        toolbar.isVisible = true
+
+        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
     companion object {
