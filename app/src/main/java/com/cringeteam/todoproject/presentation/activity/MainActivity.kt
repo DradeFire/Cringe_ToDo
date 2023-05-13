@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         initRecycler()
     }
 
-
     private fun initObservers() {
         compositeDisposable.add(
             viewModel.getProjects()
@@ -46,8 +45,8 @@ class MainActivity : AppCompatActivity() {
                     },
                     { error ->
                         Logger.log("MainActivity::initObservers(), getProjects() error: ${error.localizedMessage}")
-                    }
-                )
+                    },
+                ),
         )
     }
 
@@ -55,10 +54,11 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             with(drawer) {
                 logo.setOnClickListener {
-                    // TODO: do navigate to profile
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.profileScreen)
+                    drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 closeDrawer.setOnClickListener {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+                    drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 addGroup.setOnClickListener {
                     // TODO: create dialog to create a group
