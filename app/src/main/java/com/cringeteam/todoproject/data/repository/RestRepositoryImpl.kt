@@ -9,6 +9,7 @@ import com.cringeteam.todoproject.data.rest.model.registration.RegistrationUserM
 import com.cringeteam.todoproject.domain.model.Group
 import com.cringeteam.todoproject.domain.model.RegistrationUser
 import com.cringeteam.todoproject.domain.model.StatusMessage
+import com.cringeteam.todoproject.domain.model.User
 import com.cringeteam.todoproject.domain.repository.RestRepository
 import io.reactivex.rxjava3.core.Single
 
@@ -38,6 +39,10 @@ class RestRepositoryImpl : RestRepository {
     }
 
     override fun getGroups(): Single<List<Group>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getUser(): Single<User> {
         TODO("Not yet implemented")
     }
 }

@@ -13,4 +13,7 @@
     <string name="logout">Выход</string>
     <string name="delete_account">Удалить аккаунт</string>
     <string name="open_navigation_menu">Открыть меню навигации</string>
+    <string name="group_list">Список групп</string>
+    <string name="change_photo">Изменить фото</string>
+    <string name="change_password">Изменить пароль</string>
 </resources>

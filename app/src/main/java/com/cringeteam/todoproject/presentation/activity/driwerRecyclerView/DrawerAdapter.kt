@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.cringeteam.todoproject.databinding.ItemProjectBinding
+import com.cringeteam.todoproject.databinding.ItemProjectDrawerBinding
 import com.cringeteam.todoproject.presentation.model.GroupVo
 
 class DrawerAdapter : RecyclerView.Adapter<DrawerViewHolder>() {
@@ -18,7 +18,7 @@ class DrawerAdapter : RecyclerView.Adapter<DrawerViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrawerViewHolder {
-        val binding = ItemProjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemProjectDrawerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DrawerViewHolder(binding)
     }
 
@@ -33,4 +33,4 @@ class DrawerAdapter : RecyclerView.Adapter<DrawerViewHolder>() {
     }
 }
 
-class DrawerViewHolder(val binding: ItemProjectBinding) : RecyclerView.ViewHolder(binding.root)
+class DrawerViewHolder(val binding: ItemProjectDrawerBinding) : RecyclerView.ViewHolder(binding.root)

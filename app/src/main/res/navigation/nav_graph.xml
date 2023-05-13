@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginScreen">
+    app:startDestination="@id/notesScreen">
+
+    <!-- TODO: change startDestination -->
 
     <fragment
         android:id="@+id/loginScreen"
@@ -28,15 +30,26 @@
 
         <action
             android:id="@+id/action_navigate_registrationScreen_to_loginScreen"
-            app:popUpTo="@id/nav_graph"
-            app:destination="@id/loginScreen" />
+            app:destination="@id/loginScreen"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
 
     <fragment
         android:id="@+id/notesScreen"
         android:name="com.cringeteam.todoproject.presentation.features.notesScreen.NotesFragment"
         android:label="Notes screen"
-        tools:layout="@layout/fragment_notes">
-    </fragment>
+        tools:layout="@layout/fragment_notes" />
+
+    <fragment
+        android:id="@+id/profileScreen"
+        android:name="com.cringeteam.todoproject.presentation.features.profileScreen.ProfileFragment"
+        android:label="Profile Screen"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/change_password"
+        android:name="com.cringeteam.todoproject.presentation.features.changePasswordScreen.ChangePasswordFragment"
+        android:label="Change password screen"
+        tools:layout="@layout/fragment_change_password" />
 
 </navigation>

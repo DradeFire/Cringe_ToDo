@@ -4,6 +4,8 @@ import com.cringeteam.todoproject.data.rest.model.GroupDto
 import com.cringeteam.todoproject.data.rest.model.GroupMapper
 import com.cringeteam.todoproject.data.rest.model.StatusMessageDto
 import com.cringeteam.todoproject.data.rest.model.StatusMessageMapper
+import com.cringeteam.todoproject.data.rest.model.UserDto
+import com.cringeteam.todoproject.data.rest.model.UserMapper
 import com.cringeteam.todoproject.data.rest.model.login.LoginRequestMapper
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseDto
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseMapper
@@ -13,6 +15,7 @@ import com.cringeteam.todoproject.domain.model.LoginRequest
 import com.cringeteam.todoproject.domain.model.LoginResponse
 import com.cringeteam.todoproject.domain.model.RegistrationUser
 import com.cringeteam.todoproject.domain.model.StatusMessage
+import com.cringeteam.todoproject.domain.model.User
 import com.cringeteam.todoproject.domain.repository.RestRepository
 import io.reactivex.rxjava3.core.Single
 import java.util.concurrent.TimeUnit
@@ -27,6 +30,8 @@ class RestRepositoryFakeImpl : RestRepository {
     private val statusMessageMapper = StatusMessageMapper()
 
     private val groupMapper = GroupMapper()
+
+    private val userMapper = UserMapper()
 
     override fun getLoginAccess(request: LoginRequest): Single<LoginResponse> {
 
@@ -92,6 +97,15 @@ class RestRepositoryFakeImpl : RestRepository {
         }
 
         return Single.just(fakeGroupsList)
+            .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
+    }
+
+    override fun getUser(): Single<User> {
+        val fakeUserDto = UserDto("Test login")
+
+        val fakeUser = userMapper.map(fakeUserDto)
+
+        return Single.just(fakeUser)
             .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
     }
 
