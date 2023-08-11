@@ -1,7 +1,6 @@
-package com.cringeteam.todoproject.presentation.model.formatters
+package com.cringeteam.todoproject.presentation.model.statusMessage
 
 import com.cringeteam.todoproject.domain.model.StatusMessage
-import com.cringeteam.todoproject.presentation.model.StatusMessageVo
 
 class StatusMessageFormatter {
 

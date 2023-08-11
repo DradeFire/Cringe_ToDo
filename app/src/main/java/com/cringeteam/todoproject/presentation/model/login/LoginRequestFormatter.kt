@@ -1,7 +1,6 @@
-package com.cringeteam.todoproject.presentation.model.formatters
+package com.cringeteam.todoproject.presentation.model.login
 
 import com.cringeteam.todoproject.domain.model.LoginUser
-import com.cringeteam.todoproject.presentation.model.LoginUserVo
 
 class LoginRequestFormatter {
 

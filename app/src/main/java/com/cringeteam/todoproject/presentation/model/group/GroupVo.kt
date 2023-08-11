@@ -1,4 +1,4 @@
-package com.cringeteam.todoproject.presentation.model
+package com.cringeteam.todoproject.presentation.model.group
 
 data class GroupVo(
     val id: Long,

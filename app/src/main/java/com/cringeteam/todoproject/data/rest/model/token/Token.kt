@@ -1,4 +1,4 @@
-package com.cringeteam.todoproject.data.rest.model.login
+package com.cringeteam.todoproject.data.rest.model.token
 
 data class Token(
     val token: String,

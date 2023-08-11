@@ -1,7 +1,6 @@
-package com.cringeteam.todoproject.presentation.model.formatters
+package com.cringeteam.todoproject.presentation.model.user
 
 import com.cringeteam.todoproject.domain.model.User
-import com.cringeteam.todoproject.presentation.model.UserVo
 
 class UserFormatter {
 

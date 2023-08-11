@@ -14,5 +14,6 @@
     <color name="blue">#7FAEC8</color>
     <color name="light_blue">#9CD6F5</color>
     <color name="red">#FF0000</color>
+    <color name="yellow">#FFFF00</color>
     <color name="sky_blue">#3CD0FF</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.cringeteam.todoproject.presentation.model
+package com.cringeteam.todoproject.presentation.model.statusMessage
 
 data class StatusMessageVo(
     val codeStatus: Int,

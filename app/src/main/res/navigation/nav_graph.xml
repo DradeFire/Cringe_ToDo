@@ -37,9 +37,9 @@
 
     <fragment
         android:id="@+id/notesScreen"
-        android:name="com.cringeteam.todoproject.presentation.features.notesScreen.NotesFragment"
+        android:name="com.cringeteam.todoproject.presentation.features.tasksScreen.TasksFragment"
         android:label="Notes screen"
-        tools:layout="@layout/fragment_notes" />
+        tools:layout="@layout/fragment_tasks" />
 
     <fragment
         android:id="@+id/profileScreen"

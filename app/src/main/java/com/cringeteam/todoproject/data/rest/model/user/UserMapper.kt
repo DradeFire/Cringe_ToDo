@@ -1,4 +1,4 @@
-package com.cringeteam.todoproject.data.rest.model
+package com.cringeteam.todoproject.data.rest.model.user
 
 import com.cringeteam.todoproject.domain.model.User
 

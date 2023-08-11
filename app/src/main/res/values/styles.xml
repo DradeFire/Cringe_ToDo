@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="auth_info_text_view">
+    <style name="main_info_text_view">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="secondary_info_text_view">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">8sp</item>
     </style>
 
     <style name="auth_edit_text">

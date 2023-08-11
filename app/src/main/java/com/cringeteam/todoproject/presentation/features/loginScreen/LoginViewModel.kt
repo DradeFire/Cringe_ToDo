@@ -4,9 +4,9 @@ import com.cringeteam.todoproject.common.logger.Logger
 import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.domain.usecases.SendLoginUserUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
-import com.cringeteam.todoproject.presentation.model.LoginUserVo
-import com.cringeteam.todoproject.presentation.model.formatters.LoginRequestFormatter
-import com.cringeteam.todoproject.presentation.model.formatters.LoginResponseFormatter
+import com.cringeteam.todoproject.presentation.model.login.LoginUserVo
+import com.cringeteam.todoproject.presentation.model.login.LoginRequestFormatter
+import com.cringeteam.todoproject.presentation.model.login.LoginResponseFormatter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers

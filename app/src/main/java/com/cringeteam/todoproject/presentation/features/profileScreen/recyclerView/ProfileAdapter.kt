@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.cringeteam.todoproject.databinding.ItemProjectProfileBinding
-import com.cringeteam.todoproject.presentation.model.GroupVo
+import com.cringeteam.todoproject.presentation.model.group.GroupVo
 
 class ProfileAdapter : Adapter<ProfileViewHolder>() {
 

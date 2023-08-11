@@ -1,7 +1,6 @@
-package com.cringeteam.todoproject.presentation.model.formatters
+package com.cringeteam.todoproject.presentation.model.login
 
 import com.cringeteam.todoproject.domain.model.LoginResponse
-import com.cringeteam.todoproject.presentation.model.LoginResponseVo
 
 class LoginResponseFormatter {
     fun format(response: LoginResponse): LoginResponseVo {

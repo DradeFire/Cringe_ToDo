@@ -1,4 +1,4 @@
-package com.cringeteam.todoproject.data.rest.model
+package com.cringeteam.todoproject.data.rest.model.statusMessage
 
 import com.cringeteam.todoproject.domain.model.StatusMessage
 

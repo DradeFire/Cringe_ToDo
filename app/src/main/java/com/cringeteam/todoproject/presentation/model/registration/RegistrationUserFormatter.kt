@@ -1,7 +1,6 @@
-package com.cringeteam.todoproject.presentation.model.registration.formatter
+package com.cringeteam.todoproject.presentation.model.registration
 
 import com.cringeteam.todoproject.domain.model.RegistrationUser
-import com.cringeteam.todoproject.presentation.model.registration.RegistrationUserVo
 
 class RegistrationUserFormatter {
 
