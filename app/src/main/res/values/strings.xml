@@ -16,4 +16,8 @@
     <string name="group_list">Список групп</string>
     <string name="change_photo">Изменить фото</string>
     <string name="change_password">Изменить пароль</string>
+    <string name="change_priority">Изменить приоритет</string>
+    <string name="change_alarm">Изменить будильник</string>
+    <string name="change_notification">Изменить время уведомления</string>
+    <string name="complete">Выполнить</string>
 </resources>
