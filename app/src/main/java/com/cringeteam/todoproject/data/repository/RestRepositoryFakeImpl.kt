@@ -124,9 +124,9 @@ class RestRepositoryFakeImpl : RestRepository {
                 title = "Task $index",
                 description = "This is task $index",
                 isDone = false,
-                deadline = -1L,
-                priority = index % 3,
-                notification = -1L,
+                deadline = FAKE_LONG_ID,
+                priority = index % DIVIDER_FOR_PRIORITY,
+                notification = FAKE_LONG_ID,
             )
         }
 
@@ -146,5 +146,7 @@ class RestRepositoryFakeImpl : RestRepository {
         private const val RESPONSE_MESSAGE_201 = "Создано"
         private const val RESPONSE_400 = 400
         private const val RESPONSE_ERROR_400 = "Некорректные данные, не хватает данных"
+        private const val FAKE_LONG_ID = -1L
+        private const val DIVIDER_FOR_PRIORITY = 3
     }
 }
