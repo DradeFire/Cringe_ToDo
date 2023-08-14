@@ -9,9 +9,7 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding, Chang
 
     override val inflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentChangePasswordBinding =
         FragmentChangePasswordBinding::inflate
-
     override val viewModelClass: Class<ChangePasswordViewModel> = ChangePasswordViewModel::class.java
-
     override val screenName: String = SCREEN_NAME
 
     // TODO: realize "change password"

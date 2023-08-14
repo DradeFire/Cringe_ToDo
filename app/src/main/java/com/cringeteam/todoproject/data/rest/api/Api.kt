@@ -1,7 +1,7 @@
 package com.cringeteam.todoproject.data.rest.api
 
 import com.cringeteam.todoproject.common.consts.Consts
-import com.cringeteam.todoproject.data.rest.model.login.Token
+import com.cringeteam.todoproject.data.rest.model.token.Token
 import com.cringeteam.todoproject.data.rest.model.registration.RegistrationUserDto
 import com.cringeteam.todoproject.domain.model.StatusMessage
 import io.reactivex.rxjava3.core.Single

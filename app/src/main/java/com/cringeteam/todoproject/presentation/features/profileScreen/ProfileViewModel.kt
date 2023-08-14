@@ -3,10 +3,10 @@ package com.cringeteam.todoproject.presentation.features.profileScreen
 import com.cringeteam.todoproject.domain.usecases.GetProjectsUseCase
 import com.cringeteam.todoproject.domain.usecases.GetUserUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
-import com.cringeteam.todoproject.presentation.model.GroupVo
-import com.cringeteam.todoproject.presentation.model.UserVo
-import com.cringeteam.todoproject.presentation.model.formatters.GroupFormatter
-import com.cringeteam.todoproject.presentation.model.formatters.UserFormatter
+import com.cringeteam.todoproject.presentation.model.group.GroupVo
+import com.cringeteam.todoproject.presentation.model.user.UserVo
+import com.cringeteam.todoproject.presentation.model.group.GroupFormatter
+import com.cringeteam.todoproject.presentation.model.user.UserFormatter
 import io.reactivex.rxjava3.core.Single
 
 class ProfileViewModel : BaseViewModel() {

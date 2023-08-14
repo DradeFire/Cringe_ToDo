@@ -3,9 +3,9 @@ package com.cringeteam.todoproject.presentation.features.registrationScreen
 import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.domain.usecases.RegistrationUseCase
 import com.cringeteam.todoproject.presentation.base.BaseViewModel
-import com.cringeteam.todoproject.presentation.model.formatters.StatusMessageFormatter
+import com.cringeteam.todoproject.presentation.model.statusMessage.StatusMessageFormatter
 import com.cringeteam.todoproject.presentation.model.registration.RegistrationUserVo
-import com.cringeteam.todoproject.presentation.model.registration.formatter.RegistrationUserFormatter
+import com.cringeteam.todoproject.presentation.model.registration.RegistrationUserFormatter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers

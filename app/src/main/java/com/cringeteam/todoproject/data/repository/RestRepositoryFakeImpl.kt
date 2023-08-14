@@ -1,20 +1,23 @@
 package com.cringeteam.todoproject.data.repository
 
-import com.cringeteam.todoproject.data.rest.model.GroupDto
-import com.cringeteam.todoproject.data.rest.model.GroupMapper
-import com.cringeteam.todoproject.data.rest.model.StatusMessageDto
-import com.cringeteam.todoproject.data.rest.model.StatusMessageMapper
-import com.cringeteam.todoproject.data.rest.model.UserDto
-import com.cringeteam.todoproject.data.rest.model.UserMapper
-import com.cringeteam.todoproject.data.rest.model.login.Token
+import com.cringeteam.todoproject.data.rest.model.group.GroupDto
+import com.cringeteam.todoproject.data.rest.model.group.GroupMapper
+import com.cringeteam.todoproject.data.rest.model.statusMessage.StatusMessageDto
+import com.cringeteam.todoproject.data.rest.model.statusMessage.StatusMessageMapper
+import com.cringeteam.todoproject.data.rest.model.user.UserDto
+import com.cringeteam.todoproject.data.rest.model.user.UserMapper
+import com.cringeteam.todoproject.data.rest.model.token.Token
 import com.cringeteam.todoproject.data.rest.model.login.LoginRequestMapper
 import com.cringeteam.todoproject.data.rest.model.login.LoginResponseMapper
 import com.cringeteam.todoproject.data.rest.model.registration.RegistrationUserMapper
+import com.cringeteam.todoproject.data.rest.model.task.TaskDto
+import com.cringeteam.todoproject.data.rest.model.task.TaskMapper
 import com.cringeteam.todoproject.domain.model.Group
 import com.cringeteam.todoproject.domain.model.LoginResponse
 import com.cringeteam.todoproject.domain.model.LoginUser
 import com.cringeteam.todoproject.domain.model.RegistrationUser
 import com.cringeteam.todoproject.domain.model.StatusMessage
+import com.cringeteam.todoproject.domain.model.Task
 import com.cringeteam.todoproject.domain.model.User
 import com.cringeteam.todoproject.domain.repository.RestRepository
 import io.reactivex.rxjava3.core.Single
@@ -32,6 +35,8 @@ class RestRepositoryFakeImpl : RestRepository {
     private val groupMapper = GroupMapper()
 
     private val userMapper = UserMapper()
+
+    private val taskMapper = TaskMapper()
 
     override fun getLoginAccess(request: LoginUser): Single<LoginResponse> {
 
@@ -109,6 +114,31 @@ class RestRepositoryFakeImpl : RestRepository {
             .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
     }
 
+    override fun getUngroupedTasks(): Single<List<Task>> {
+
+        val fakeUngroupedTasksListDto = List<TaskDto>(TEST_LIST_SIZE) { index ->
+            TaskDto(
+                id = index.toLong(),
+                groupId = null,
+                parentId = null,
+                title = "Task $index",
+                description = "This is task $index",
+                isDone = false,
+                deadline = FAKE_LONG_ID,
+                priority = index % DIVIDER_FOR_PRIORITY,
+                notification = FAKE_LONG_ID,
+            )
+        }
+
+        val fakeUngroupedTasksList: List<Task> = fakeUngroupedTasksListDto.map { dto ->
+            taskMapper.map(dto)
+        }
+
+        return Single.just(fakeUngroupedTasksList)
+            .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
+
+    }
+
     companion object {
         private const val FAKE_REQUEST_DELAY = 5L
         private const val TEST_LIST_SIZE = 10
@@ -116,5 +146,7 @@ class RestRepositoryFakeImpl : RestRepository {
         private const val RESPONSE_MESSAGE_201 = "Создано"
         private const val RESPONSE_400 = 400
         private const val RESPONSE_ERROR_400 = "Некорректные данные, не хватает данных"
+        private const val FAKE_LONG_ID = -1L
+        private const val DIVIDER_FOR_PRIORITY = 3
     }
 }

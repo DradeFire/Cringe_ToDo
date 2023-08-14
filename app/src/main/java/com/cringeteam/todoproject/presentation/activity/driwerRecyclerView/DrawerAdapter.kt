@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cringeteam.todoproject.databinding.ItemProjectDrawerBinding
-import com.cringeteam.todoproject.presentation.model.GroupVo
+import com.cringeteam.todoproject.presentation.model.group.GroupVo
 
 class DrawerAdapter : RecyclerView.Adapter<DrawerViewHolder>() {
 
