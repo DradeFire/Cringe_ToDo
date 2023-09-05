@@ -139,6 +139,25 @@ class RestRepositoryFakeImpl : RestRepository {
 
     }
 
+    override fun getTaskInfo(id: Long): Single<Task> {
+        val fakeTaskDto = TaskDto(
+            id = id,
+            groupId = null,
+            parentId = null,
+            title = "Task $id",
+            description = "This is task $id",
+            isDone = false,
+            deadline = FAKE_LONG_ID,
+            priority = id.toInt(),
+            notification = FAKE_LONG_ID,
+        )
+
+        val fakeTask = taskMapper.map(fakeTaskDto)
+
+        return Single.just(fakeTask)
+            .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
+    }
+
     companion object {
         private const val FAKE_REQUEST_DELAY = 5L
         private const val TEST_LIST_SIZE = 10
