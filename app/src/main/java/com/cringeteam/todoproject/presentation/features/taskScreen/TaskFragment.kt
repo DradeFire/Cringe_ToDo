@@ -2,6 +2,7 @@ package com.cringeteam.todoproject.presentation.features.taskScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
@@ -11,9 +12,11 @@ import com.cringeteam.todoproject.common.consts.Consts
 import com.cringeteam.todoproject.common.logger.Logger
 import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.databinding.FragmentTaskBinding
+import com.cringeteam.todoproject.domain.model.Task
 import com.cringeteam.todoproject.presentation.base.BaseFragment
 import com.cringeteam.todoproject.presentation.features.taskScreen.recyclerView.SubtasksAdapter
 import com.cringeteam.todoproject.presentation.features.tasksScreen.TasksFragmentDirections
+import com.cringeteam.todoproject.presentation.model.task.TaskVO
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -41,7 +44,6 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>() {
 
     override fun initObservers() {
         super.initObservers()
-
         val id = args.id
 
         viewModel?.let { viewModel ->
@@ -51,24 +53,8 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                         { state ->
-                            when (state) {
-                                ScreenState.Waiting -> {
-                                    Logger.log("State is waiting")
-                                    binding?.progressBar?.isVisible = false
-                                }
-
-                                ScreenState.Loading -> {
-                                    Logger.log("State is loading")
-                                    binding?.progressBar?.isVisible = true
-                                }
-
-                                ScreenState.Success -> {
-                                    Logger.log("State is success")
-                                    binding?.progressBar?.isVisible = false
-                                }
-                                ScreenState.Error -> TODO("Add Error state and show error toast")
-
-                                null -> TODO("Add if we get null")
+                            binding?.apply {
+                                reactToScreenState(progressBar, state)
                             }
                         },
                         { error ->
@@ -91,45 +77,9 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>() {
                             val task = pair.first
                             val subtasks = pair.second
 
-                            Logger.log(subtasks.toString())
-
-                            binding?.apply {
-                                title.text = task.title
-                                description.text = task.description
-                                notificationText.text = task.notification
-
-                                if (task.priority in Consts.HIGH_PRIORITY..Consts.LOW_PRIORITY) {
-                                    priorityText.text =
-                                        getString(R.string.priority_task_text, task.priority)
-                                }
-                                when (task.priority) {
-                                    Consts.HIGH_PRIORITY -> priorityPicker.setColorFilter(
-                                        ContextCompat.getColor(requireContext(), R.color.red)
-                                    )
-
-                                    Consts.MEDIUM_PRIORITY -> priorityPicker.setColorFilter(
-                                        ContextCompat.getColor(requireContext(), R.color.yellow)
-                                    )
-
-                                    Consts.LOW_PRIORITY -> priorityPicker.setColorFilter(
-                                        ContextCompat.getColor(requireContext(), R.color.black)
-                                    )
-
-                                    else -> priorityPicker.setColorFilter(
-                                        ContextCompat.getColor(
-                                            requireContext(),
-                                            R.color.black
-                                        )
-                                    )
-                                }
-
-                                if (task.deadline != Consts.NO_DEADLINE) {
-                                    alarmText.text = task.deadline.toString()
-                                }
-
-                                subtasksAdapter.setData(subtasks)
+                            binding?.let { binding ->
+                                setDataForUI(binding, task, subtasks)
                             }
-
                             viewModel.screenState.onNext(ScreenState.Success)
                         },
                         { error ->
@@ -142,7 +92,64 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>() {
                     )
             )
         }
+    }
 
+    private fun reactToScreenState(progressBar: ProgressBar, state: ScreenState) {
+        when (state) {
+            ScreenState.Waiting -> {
+                Logger.log("State is waiting")
+                progressBar.isVisible = false
+            }
+
+            ScreenState.Loading -> {
+                Logger.log("State is loading")
+                progressBar.isVisible = true
+            }
+
+            ScreenState.Success -> {
+                Logger.log("State is success")
+                progressBar.isVisible = false
+            }
+
+            ScreenState.Error -> TODO("Add Error state and show error toast")
+        }
+    }
+
+    private fun setDataForUI(binding:FragmentTaskBinding, task: TaskVO, subtasks: List<TaskVO>) {
+        binding.title.text = task.title
+        binding.description.text = task.description
+        binding.notificationText.text = task.notification
+
+        if (task.priority in Consts.HIGH_PRIORITY..Consts.LOW_PRIORITY) {
+            binding.priorityText.text =
+                getString(R.string.priority_task_text, task.priority)
+        }
+        when (task.priority) {
+            Consts.HIGH_PRIORITY -> binding.priorityPicker.setColorFilter(
+                ContextCompat.getColor(requireContext(), R.color.red)
+            )
+
+            Consts.MEDIUM_PRIORITY -> binding.priorityPicker.setColorFilter(
+                ContextCompat.getColor(requireContext(), R.color.yellow)
+            )
+
+            Consts.LOW_PRIORITY -> binding.priorityPicker.setColorFilter(
+                ContextCompat.getColor(requireContext(), R.color.black)
+            )
+
+            else -> binding.priorityPicker.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.black
+                )
+            )
+        }
+
+        if (task.deadline != Consts.NO_DEADLINE) {
+            binding.alarmText.text = task.deadline.toString()
+        }
+
+        subtasksAdapter.setData(subtasks)
     }
 
     private fun navigateToTaskScreen(id: Long) {
