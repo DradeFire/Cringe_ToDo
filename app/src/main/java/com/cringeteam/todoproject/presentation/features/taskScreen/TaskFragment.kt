@@ -12,7 +12,6 @@ import com.cringeteam.todoproject.common.consts.Consts
 import com.cringeteam.todoproject.common.logger.Logger
 import com.cringeteam.todoproject.common.state.ScreenState
 import com.cringeteam.todoproject.databinding.FragmentTaskBinding
-import com.cringeteam.todoproject.domain.model.Task
 import com.cringeteam.todoproject.presentation.base.BaseFragment
 import com.cringeteam.todoproject.presentation.features.taskScreen.recyclerView.SubtasksAdapter
 import com.cringeteam.todoproject.presentation.features.tasksScreen.TasksFragmentDirections
