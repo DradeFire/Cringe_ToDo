@@ -10,7 +10,7 @@
         android:id="@+id/complete"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_outlined"
         android:contentDescription="@string/complete"
@@ -35,7 +35,7 @@
         android:id="@+id/ic_description"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/complete"
@@ -48,7 +48,7 @@
         style="@style/main_info_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:lines="1"
         app:layout_constraintBottom_toBottomOf="@id/ic_description"
@@ -61,13 +61,25 @@
         android:id="@+id/notification_picker"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/bg_outlined"
         android:contentDescription="@string/complete"
         android:src="@drawable/ic_clock"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_description" />
+
+    <TextView
+        android:id="@+id/notification_text"
+        style="@style/main_info_text_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/notification_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/notification_picker"
+        app:layout_constraintTop_toTopOf="@id/notification_picker" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/priority_picker"
@@ -75,11 +87,23 @@
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/bg_outlined"
         android:contentDescription="@string/complete"
         android:src="@drawable/ic_flag"
-        app:layout_constraintStart_toEndOf="@id/notification_picker"
-        app:layout_constraintTop_toBottomOf="@id/ic_description" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notification_picker" />
+
+    <TextView
+        android:id="@+id/priority_text"
+        style="@style/main_info_text_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/priority_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/priority_picker"
+        app:layout_constraintTop_toTopOf="@id/priority_picker" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/alarm_picker"
@@ -87,41 +111,69 @@
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/bg_outlined"
         android:contentDescription="@string/complete"
         android:src="@drawable/ic_alarm"
-        app:layout_constraintStart_toEndOf="@id/priority_picker"
-        app:layout_constraintTop_toBottomOf="@id/ic_description" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/priority_picker" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/alarm_text"
+        style="@style/main_info_text_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_rounded_gray"
-        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/alarm_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/alarm_picker"
+        app:layout_constraintTop_toTopOf="@id/alarm_picker" />
+
+    <ScrollView
+        android:id="@+id/srcoll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/alarm_picker">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/subtasks"
+        <LinearLayout
+            android:id="@+id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            tools:itemCount="5"
-            tools:listitem="@layout/item_subtask" />
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rounded_gray"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/add_subtask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/light_blue"
-            android:src="@drawable/ic_add" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/subtasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_subtask" />
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/add_subtask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="50dp"
+                android:background="@color/light_blue"
+                android:src="@drawable/ic_add" />
+        </LinearLayout>
+    </ScrollView>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

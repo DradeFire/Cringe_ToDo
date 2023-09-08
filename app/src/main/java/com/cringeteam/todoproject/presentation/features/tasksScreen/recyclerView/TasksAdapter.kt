@@ -7,10 +7,14 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.cringeteam.todoproject.R
+import com.cringeteam.todoproject.common.consts.Consts
 import com.cringeteam.todoproject.databinding.ItemTaskBinding
 import com.cringeteam.todoproject.presentation.model.task.TaskVO
 
-class TasksAdapter : Adapter<TasksViewHolder>() {
+class TasksAdapter(
+    private val onClick: (Long) -> Unit
+) : Adapter<TasksViewHolder>() {
+
     private var data: List<TaskVO> = emptyList()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -33,27 +37,30 @@ class TasksAdapter : Adapter<TasksViewHolder>() {
             notificationTime.text = task.notification
 
             when (task.priority) {
-                0 -> priorityPicker.setColorFilter(
+                Consts.LOW_PRIORITY -> priorityPicker.setColorFilter(
                     ContextCompat.getColor(
                         holder.itemView.context,
                         R.color.black
                     ),
                     android.graphics.PorterDuff.Mode.SRC_IN
                 )
-                1 -> priorityPicker.setColorFilter(
+
+                Consts.MEDIUM_PRIORITY -> priorityPicker.setColorFilter(
                     ContextCompat.getColor(
                         holder.itemView.context,
                         R.color.yellow
                     ),
                     android.graphics.PorterDuff.Mode.SRC_IN
                 )
-                2 -> priorityPicker.setColorFilter(
+
+                Consts.HIGH_PRIORITY -> priorityPicker.setColorFilter(
                     ContextCompat.getColor(
                         holder.itemView.context,
                         R.color.red
                     ),
                     android.graphics.PorterDuff.Mode.SRC_IN
                 )
+
                 else -> priorityPicker.setColorFilter(R.color.black)
             }
 
@@ -68,6 +75,10 @@ class TasksAdapter : Adapter<TasksViewHolder>() {
             }
             alarmPicker.setOnClickListener {
                 // TODO: setup listener
+            }
+
+            root.setOnClickListener {
+                onClick(task.id)
             }
         }
     }

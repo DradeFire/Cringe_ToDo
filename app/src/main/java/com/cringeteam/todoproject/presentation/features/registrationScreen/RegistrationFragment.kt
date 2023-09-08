@@ -62,12 +62,13 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, Registrat
                             ScreenState.Success -> {
                                 Toast.makeText(context, "Аккаунт зарегистрирован", Toast.LENGTH_SHORT).show()
                                 Logger.log("State is success")
-                                findNavController().navigate(R.id.action_navigate_registrationScreen_to_loginScreen)
+                                findNavController().navigate(R.id.navigate_registrationScreen_to_loginScreen)
                             }
                             ScreenState.Error -> {
                                 Toast.makeText(context, "Ошибка...", Toast.LENGTH_SHORT).show()
                                 Logger.log("State is error")
                             }
+                            null -> TODO("Add if we get null")
                         }
                     }
             )

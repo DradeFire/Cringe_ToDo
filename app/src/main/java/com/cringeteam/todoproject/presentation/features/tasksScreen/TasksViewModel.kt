@@ -6,12 +6,9 @@ import com.cringeteam.todoproject.presentation.base.BaseViewModel
 import com.cringeteam.todoproject.presentation.model.task.TaskFormatter
 import com.cringeteam.todoproject.presentation.model.task.TaskVO
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 class TasksViewModel : BaseViewModel() {
-
-    private var loginRequestDisposable: Disposable? = null
 
     private val getUngroupedTasksUseCase = GetUngroupedTasksUseCase()
 
@@ -28,11 +25,5 @@ class TasksViewModel : BaseViewModel() {
                     taskFormatter.format(task)
                 }
             }
-    }
-
-    override fun onCleared() {
-        loginRequestDisposable?.dispose()
-        loginRequestDisposable = null
-        super.onCleared()
     }
 }

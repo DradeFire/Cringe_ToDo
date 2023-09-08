@@ -54,4 +54,8 @@ class RestRepositoryImpl : RestRepository {
     override fun getTaskInfo(id: Long): Single<Task> {
         TODO("Not yet implemented")
     }
+
+    override fun getSubtasks(id: Long): Single<List<Task>> {
+        TODO("Not yet implemented")
+    }
 }

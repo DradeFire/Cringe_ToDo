@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.fragment.findNavController
 import com.cringeteam.todoproject.R
 import com.cringeteam.todoproject.common.logger.Logger
 import com.cringeteam.todoproject.common.state.ScreenState
@@ -22,7 +23,7 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
     override val viewModelClass: Class<TasksViewModel> = TasksViewModel::class.java
     override val screenName: String = SCREEN_NAME
 
-    private val tasksAdapter = TasksAdapter()
+    private val tasksAdapter = TasksAdapter { id -> navigateToTaskScreen(id) }
 
     override fun onStart() {
         super.onStart()
@@ -41,10 +42,11 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
 
         val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+    }
 
-        binding?.let { binding ->
-            binding.tasks.adapter = tasksAdapter
-        }
+    override fun initRecycler() {
+        super.initRecycler()
+        binding?.tasks?.adapter = tasksAdapter
     }
 
     override fun initObservers() {
@@ -73,6 +75,8 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
                                 }
 
                                 ScreenState.Error -> TODO("Add Error state and show error toast")
+
+                                null -> TODO("Add if we get null")
                             }
                         },
                         { error ->
@@ -96,6 +100,11 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
                     )
             )
         }
+    }
+
+    private fun navigateToTaskScreen(id: Long) {
+        val action = TasksFragmentDirections.navigateTasksScreenToTaskScreen(id)
+        findNavController().navigate(action)
     }
 
     companion object {

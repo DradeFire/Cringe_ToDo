@@ -49,19 +49,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                                     binding?.loginButton?.isEnabled = true
                                     binding?.progressBar?.isVisible = false
                                 }
-
                                 ScreenState.Loading -> {
                                     Logger.log("State is loading")
                                     binding?.loginButton?.isEnabled = false
                                     binding?.progressBar?.isVisible = true
                                 }
-
                                 ScreenState.Success -> {
                                     Logger.log("State is success")
-                                    findNavController().navigate(R.id.action_navigate_loginScreen_to_NotesScreen)
+                                    findNavController().navigate(R.id.navigate_loginScreen_to_TasksScreen)
                                 }
 
                                 ScreenState.Error -> TODO("Add Error state and show error toast")
+
+                                null -> TODO("Add if we get null")
                             }
                         },
                         { error ->
@@ -84,7 +84,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 }
 
                 registrationButton.setOnClickListener {
-                    findNavController().navigate(R.id.action_navigate_loginScreen_to_registrationScreen)
+                    findNavController().navigate(R.id.navigate_loginScreen_to_registrationScreen)
                 }
             }
         }

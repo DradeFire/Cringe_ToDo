@@ -22,4 +22,6 @@ interface RestRepository {
     fun getUngroupedTasks(): Single<List<Task>>
 
     fun getTaskInfo(id: Long): Single<Task>
+
+    fun getSubtasks(id: Long): Single<List<Task>>
 }

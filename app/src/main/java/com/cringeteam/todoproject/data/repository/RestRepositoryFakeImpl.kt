@@ -125,7 +125,7 @@ class RestRepositoryFakeImpl : RestRepository {
                 description = "This is task $index",
                 isDone = false,
                 deadline = FAKE_LONG_ID,
-                priority = index % DIVIDER_FOR_PRIORITY,
+                priority = index % DIVIDER_FOR_PRIORITY + PLUS_ONE_FOR_PRIORITY,
                 notification = FAKE_LONG_ID,
             )
         }
@@ -148,13 +148,36 @@ class RestRepositoryFakeImpl : RestRepository {
             description = "This is task $id",
             isDone = false,
             deadline = FAKE_LONG_ID,
-            priority = id.toInt(),
+            priority = (id % DIVIDER_FOR_PRIORITY + PLUS_ONE_FOR_PRIORITY).toInt(),
             notification = FAKE_LONG_ID,
         )
 
         val fakeTask = taskMapper.map(fakeTaskDto)
 
         return Single.just(fakeTask)
+            .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
+    }
+
+    override fun getSubtasks(id: Long): Single<List<Task>> {
+        val fakeUngroupedTasksListDto = List<TaskDto>(TEST_LIST_SIZE) { index ->
+            TaskDto(
+                id = index.toLong(),
+                groupId = null,
+                parentId = id,
+                title = "Task $index",
+                description = "This is task $index",
+                isDone = false,
+                deadline = FAKE_LONG_ID,
+                priority = index % DIVIDER_FOR_PRIORITY + PLUS_ONE_FOR_PRIORITY,
+                notification = FAKE_LONG_ID,
+            )
+        }
+
+        val fakeUngroupedTasksList: List<Task> = fakeUngroupedTasksListDto.map { dto ->
+            taskMapper.map(dto)
+        }
+
+        return Single.just(fakeUngroupedTasksList)
             .delay(FAKE_REQUEST_DELAY, TimeUnit.SECONDS)
     }
 
@@ -167,5 +190,6 @@ class RestRepositoryFakeImpl : RestRepository {
         private const val RESPONSE_ERROR_400 = "Некорректные данные, не хватает данных"
         private const val FAKE_LONG_ID = -1L
         private const val DIVIDER_FOR_PRIORITY = 3
+        private const val PLUS_ONE_FOR_PRIORITY = 1
     }
 }
