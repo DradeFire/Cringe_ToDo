@@ -20,4 +20,6 @@
     <string name="change_alarm">Изменить будильник</string>
     <string name="change_notification">Изменить время уведомления</string>
     <string name="complete">Выполнить</string>
+    <!-- P1, P2, P3 -->
+    <string name="priority_task_text">P%1$d</string>
 </resources>
